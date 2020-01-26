@@ -21,5 +21,10 @@ Auth::routes();
 Route::get('/', 'Article\ArticleController@index')->name('Home');
 
 Route::resource('articles', 'Article\ArticleController');
+Route::resource('articles.comments', 'Article\ArticleCommentController', ['only' => ['store']]);
 
-Route::resource('users', 'User\UserController');
+Route::resource('users', 'User\UserController', ['only' => ['index', 'show']]);
+Route::resource('users.articles', 'User\UserArticleController', ['only' => ['index']]);
+Route::resource('users.comments', 'User\UserCommentController', ['only' => ['index']]);
+
+Route::resource('comments', 'Comment\CommentController', ['only' => ['destroy']]);

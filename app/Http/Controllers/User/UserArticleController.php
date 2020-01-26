@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Comment;
+namespace App\Http\Controllers\User;
 
-use App\Comment;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class CommentController extends Controller
+class UserArticleController extends Controller
 {
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
-	public function index()
+	public function index(User $user)
 	{
-		//
+		$articles = $user->articles()->paginate(5);
+
+		return view('users.show', ['user' => $user, 'articles' => $articles]);
 	}
 
 	/**
@@ -44,10 +44,10 @@ class CommentController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  \App\User  $user
 	 * @return \Illuminate\Http\Response
 	 */
-	public function show($id)
+	public function show(User $user)
 	{
 		//
 	}
@@ -55,10 +55,10 @@ class CommentController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  \App\User  $user
 	 * @return \Illuminate\Http\Response
 	 */
-	public function edit($id)
+	public function edit(User $user)
 	{
 		//
 	}
@@ -67,10 +67,10 @@ class CommentController extends Controller
 	 * Update the specified resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
-	 * @param  int  $id
+	 * @param  \App\User  $user
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id)
+	public function update(Request $request, User $user)
 	{
 		//
 	}
@@ -78,18 +78,11 @@ class CommentController extends Controller
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  \App\User  $user
 	 * @return \Illuminate\Http\Response
 	 */
-	public function destroy(Comment $comment, Request $request)
+	public function destroy(User $user)
 	{
-		if ($comment->user_id != Auth::user()->id) {
-			throw new HttpException(403, "You have no permissions");
-		}
-
-		$comment->delete();
-
-		$request->session()->flash('message-success', 'Comment successfully removed!');
-		return redirect()->back();
+		//
 	}
 }

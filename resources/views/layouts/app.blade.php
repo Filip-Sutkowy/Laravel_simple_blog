@@ -58,7 +58,10 @@
 							</a>
 
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
 								<a class="dropdown-item" href="/users/{{ Auth::user()->id }}">My page</a>
+
+								<a class="dropdown-item" href="/articles/create">Add article</a>
 
 								<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -76,10 +79,14 @@
 		</nav>
 
 		<main class="py-4 container">
+			@if (Session::has('message-success'))
+			<div class="alert alert-success">{{Session::get('message-success')}}</div>
+			@endif
+
 			@yield('content')
 		</main>
 
-		<footer class="footer mt-auto py-3">
+		<footer class=" footer mt-auto py-3">
 			<div class="container text-center">
 				<p class="text-muted">Created by <a href="https://www.linkedin.com/in/filip-sutkowy/">Filip Sutkowy</a> for <a href="https://iguanastudio.pl/">Iguana Studio</a></p>
 				<p><a href="https://github.com/Filip-Sutkowy/Laravel_simple_blog"><i class="fab fa-github"></i> Github source code</a></p>

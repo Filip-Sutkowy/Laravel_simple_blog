@@ -11084,3 +11084,8 @@ a.text-dark:focus {
   }
 }
 
+.pagination {
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
