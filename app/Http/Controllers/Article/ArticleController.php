@@ -96,6 +96,9 @@ class ArticleController extends Controller
 	 */
 	public function edit(Article $article, Request $request)
 	{
+		if (!Auth::check()) {
+			throw new HttpException(401, "Unauthorized");
+		}
 		if ($article->user_id != Auth::user()->id) {
 			throw new HttpException(403, "You have no permissions");
 		}
@@ -112,6 +115,10 @@ class ArticleController extends Controller
 	 */
 	public function update(Request $request, Article $article)
 	{
+		if (!Auth::check()) {
+			throw new HttpException(401, "Unauthorized");
+		}
+
 		if ($article->user_id != Auth::user()->id) {
 			throw new HttpException(403, "You have no permissions");
 		}
@@ -154,6 +161,10 @@ class ArticleController extends Controller
 	 */
 	public function destroy(Article $article, Request $request)
 	{
+		if (!Auth::check()) {
+			throw new HttpException(401, "Unauthorized");
+		}
+
 		if ($article->user_id != Auth::user()->id) {
 			throw new HttpException(403, "You have no permissions");
 		}

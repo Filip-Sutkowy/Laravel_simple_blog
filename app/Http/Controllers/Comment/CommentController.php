@@ -83,6 +83,10 @@ class CommentController extends Controller
 	 */
 	public function destroy(Comment $comment, Request $request)
 	{
+		if (!Auth::check()) {
+			throw new HttpException(401, "You are not authorized. Login first");
+		}
+
 		if ($comment->user_id != Auth::user()->id) {
 			throw new HttpException(403, "You have no permissions");
 		}

@@ -10,21 +10,12 @@
 							<a class="btn btn-comment btn-dropdown align-middle d-inline-flex p-2" id="comment_{{ $comment->id }}_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-ellipsis-v"></i></a>
 							<div class="dropdown-menu">
 								@if (Auth::check() && $comment->user_id == Auth::user()->id )
-								<a class="dropdown-item" onclick="removeComment()" href="#"><i class="fas fa-trash"></i> Remove </a>
+								<a class="dropdown-item" onclick="removeComment({{ $comment->id }})" href="#"><i class="fas fa-trash"></i> Remove </a>
 
-								<form id="destoy-comment" action="/comments/{{ $comment->id }}" method="POST" style="display: none;">
+								<form id="destoy-comment_{{ $comment->id }}" action="/comments/{{ $comment->id }}" method="POST" style="display: none;">
 									@csrf
 									@method('DELETE')
 								</form>
-
-								<script>
-									function removeComment() {
-										if (confirm('You are going to remove your comment. Are you sure?')) {
-											event.preventDefault();
-											document.getElementById('destoy-comment').submit();
-										}
-									}
-								</script>
 								@else
 								<span class="dropdown-item"><i class="fas fa-lock"></i> Only author can delete comment </span>
 								@endif
@@ -41,3 +32,12 @@
 			</div>
 		</div>
 		@endforeach
+
+		<script>
+			function removeComment(commentId) {
+				if (confirm('You are going to remove your comment. Are you sure?')) {
+					event.preventDefault();
+					document.getElementById('destoy-comment_' + commentId).submit();
+				}
+			}
+		</script>

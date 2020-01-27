@@ -69,11 +69,12 @@
 
 			<h4>Leave comment:</h4>
 			<div class="input-group">
-				<input type="text" class="form-control" placeholder="Comment content" name="content">
+				<input type="text" class="form-control" placeholder="Comment content" name="content" maxlength="200" required>
 				<div class="input-group-append">
 					<input class="btn btn-outline-info" type="submit" id="button-addon2" value="Send">
 				</div>
 			</div>
+			<small id="emailHelp" class="form-text text-muted">Max comment length is 200 characters</small>
 		</form>
 		@endif
 		@else
