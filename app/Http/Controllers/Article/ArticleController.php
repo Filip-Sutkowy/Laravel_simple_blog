@@ -68,12 +68,6 @@ class ArticleController extends Controller
 
 		$newArticle->save();
 
-		// $data = $request->all();
-
-		// $data['image'] = $request->image->store('img');
-
-		// $newArticle = Article::create($data);
-
 		return redirect('articles/' . $newArticle->id);
 	}
 
