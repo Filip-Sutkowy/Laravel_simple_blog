@@ -3,5 +3,3 @@
 ## About repo
 
 Project was done for a recruitment task for Iguana Studio [iguanastudio.pl](https://iguanastudio.pl/).
-
-Demo can be found here: [link](http://soczewaa.e-kei.pl/)
